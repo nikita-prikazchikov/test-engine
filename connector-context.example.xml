@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="config" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:connector.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="propertyPlaceholderConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="properties" ref="config"/>
+        <property name="localOverride" value="false"/>
+    </bean>
+
+	<bean id="NeytiriURL" class="java.lang.String">
+		<constructor-arg value="url"/>
+	</bean>
+	<bean id="NeytiriUpdateURL" class="java.lang.String">
+		<constructor-arg value="/tenac/workflow/updatestatus?token=%s&amp;status=%s&amp;message=%s"/>
+	</bean>
+	<bean id="NeytiriStatusIdLog" class="java.lang.String">
+		<constructor-arg value="&amp;id_test_case_execution_log=%s"/>
+	</bean>
+
+    <bean id="TestServiceUrl" class="java.lang.String">
+        <constructor-arg value="url"/>
+    </bean>
+    <bean id="TestServiceLogin" class="java.lang.String">
+        <constructor-arg value="login"/>
+    </bean>
+    <bean id="TestServicePassword" class="java.lang.String">
+        <constructor-arg value="password"/>
+    </bean>
+
+    <bean id="ChromeDriverLogPath" class="java.lang.String">
+        <constructor-arg value="path to crome driver log file"/>
+    </bean>
+
+	<bean id="ChromeDriverPath" class="java.lang.String">
+		<constructor-arg value="path to crome driver executable file"/>
+	</bean>
+
+    <bean id="webDavStorageUrl" class="java.lang.String">
+        <constructor-arg value="url for screenshots storage"/>
+    </bean>
+    <bean id="webDavStorageLogin" class="java.lang.String">
+        <constructor-arg value="screenshot storage user_name"/>
+    </bean>
+    <bean id="webDavStoragePassword" class="java.lang.String">
+        <constructor-arg value="screenshot storage password"/>
+    </bean>
+
+</beans>
